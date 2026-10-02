@@ -31,6 +31,8 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          video_id=$(python3 -c 'import json; print(json.load(open("data/latest-video.json"))["videoId"])')
+
           git add data/latest-video.json
-          git commit -m "chore: update latest video"
+          git commit -m "chore: update latest video ($video_id)"
           git push
