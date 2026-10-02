@@ -111,3 +111,89 @@ h1 {
 
   color: rgba(255, 255, 255, 0.8);
 }
+.latest-video {
+  margin-top: 3rem;
+}
+
+.latest-video h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  margin-bottom: 1rem;
+}
+
+.latest-video-link {
+  display: block;
+  max-width: 480px;
+  margin: 0 auto;
+
+  color: white;
+  text-decoration: none;
+  text-align: left;
+
+  border-radius: 16px;
+  border: 1px solid var(--border);
+
+  background: rgba(255,255,255,.05);
+
+  overflow: hidden;
+
+  transition:
+    transform .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+.latest-video-link:hover {
+  transform: translateY(-2px);
+
+  background: rgba(255,255,255,.10);
+
+  border-color: rgba(139, 92, 246, .5);
+
+  box-shadow: 0 0 20px rgba(139, 92, 246, .2);
+}
+
+.latest-video-link img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.latest-video-info {
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.latest-video-info h3 {
+  font-size: 1.1rem;
+  line-height: 1.4;
+  margin-bottom: .35rem;
+}
+
+.latest-video-info p {
+  font-size: .9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: .75rem;
+}
+
+.latest-video-info span {
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .latest-video {
+    margin-top: 2.5rem;
+  }
+
+  .latest-video-info h3 {
+    font-size: 1rem;
+  }
+}
