@@ -60,8 +60,10 @@ async function renderLatestVideo() {
   image.alt = video.title;
   image.loading = "lazy";
 
-  const info = createElement("div", "latest-video-info");
-  info.append(createElement("h3", null, video.title));
+  const thumb = createElement("div", "latest-video-thumb");
+  thumb.append(image);
+
+  const meta = createElement("div", "latest-video-meta");
 
   if (video.published) {
     const date = new Date(video.published).toLocaleDateString("es-CL", {
@@ -70,12 +72,17 @@ async function renderLatestVideo() {
       year: "numeric"
     });
 
-    info.append(createElement("p", null, date));
+    const time = createElement("time", null, date);
+    time.dateTime = video.published;
+    meta.append(time);
   }
 
-  info.append(createElement("span", null, "▶ Ver episodio"));
+  meta.append(createElement("span", null, "▶ Ver episodio"));
 
-  link.append(image, info);
+  const info = createElement("div", "latest-video-info");
+  info.append(createElement("h3", null, video.title), meta);
+
+  link.append(thumb, info);
   container.replaceChildren(link);
 }
 

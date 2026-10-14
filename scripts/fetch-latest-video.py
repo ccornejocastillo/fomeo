@@ -4,6 +4,7 @@ YouTube channel and save it to data/latest-video.json."""
 
 import json
 import sys
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -43,6 +44,18 @@ def has_views(entry):
     return stats is None or stats.get("views") != "0"
 
 
+def thumbnail_url(video_id):
+    # maxresdefault (1280x720) isn't generated for every video
+    url = f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg"
+    request = urllib.request.Request(url, method="HEAD")
+
+    try:
+        with urllib.request.urlopen(request, timeout=30):
+            return url
+    except urllib.error.HTTPError:
+        return f"https://i.ytimg.com/vi/{video_id}/hqdefault.jpg"
+
+
 def main():
     entries = [
         entry
@@ -70,7 +83,7 @@ def main():
         "title": title,
         "published": published,
         "url": f"https://www.youtube.com/watch?v={video_id}",
-        "thumbnail": f"https://i.ytimg.com/vi/{video_id}/hqdefault.jpg",
+        "thumbnail": thumbnail_url(video_id),
     }
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
